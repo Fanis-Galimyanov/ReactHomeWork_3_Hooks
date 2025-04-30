@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import {createContext, useState} from 'react'
 import './App.css'
+import Toolbar from './Components/Toolbar';
+
+let themeColor, setThemeColor;
+
+const themes = {
+  light: {
+    foreground: "#000000",
+    background: "#eeeeee"
+  },
+  dark: {
+    foreground: "#ffffff",
+    background: "#222222"
+  }
+};
+
+export const changeTheme = function(){
+  if(themeColor === themes.light){
+    setThemeColor(themes.dark);
+    localStorage.setItem('themColor',JSON.stringify(themes.dark));
+  }
+  else{
+    setThemeColor(themes.light);
+    localStorage.setItem('themColor',JSON.stringify(themes.light));
+  }
+  console.log('Вход в функцию');
+}
+
+export const ThemeContext = createContext(null);
 
 function App() {
-  const [count, setCount] = useState(0)
+  [themeColor, setThemeColor] = useState(JSON.parse(localStorage.getItem('themColor')));
+  
+  console.log(themeColor);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ThemeContext.Provider value={themeColor}>
+      <Toolbar/>
+    </ThemeContext.Provider>
+  );
 }
 
 export default App
