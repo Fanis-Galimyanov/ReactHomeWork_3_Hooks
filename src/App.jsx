@@ -24,7 +24,6 @@ export const changeTheme = function(){
     setThemeColor(themes.light);
     localStorage.setItem('themColor',JSON.stringify(themes.light));
   }
-  console.log('Вход в функцию');
 }
 
 export const ThemeContext = createContext(null);
