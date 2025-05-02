@@ -16,25 +16,28 @@ const themes = {
 
 export const ThemeContext = createContext(null);
 
-let themColor,  setThemeColor;
+let setThemeColor;
 
-export const changeTheme = function(){
-    if(themColor === themes.light){
-      setThemeColor(themes.dark);
-      localStorage.setItem('themColor',JSON.stringify(themes.dark));
-    }
-    else{
-      setThemeColor(themes.light);
-      localStorage.setItem('themColor',JSON.stringify(themes.light));
-    }
-  }
+const themProvider = {  
+  collorThem : null,
+  changeColor : function(){
+                            if(themProvider.collorThem === themes.light){
+                                  setThemeColor(themes.dark);
+                                  localStorage.setItem('themColor',JSON.stringify(themes.dark));
+                            }
+                            else{
+                                  setThemeColor(themes.light);
+                                  localStorage.setItem('themColor',JSON.stringify(themes.light));
+                            }
+                          }
+}
 
 export default function Task1Main(){
 
-    [themColor, setThemeColor] = useState(JSON.parse(localStorage.getItem('themColor')));
-  
+    [themProvider.collorThem, setThemeColor] = useState(JSON.parse(localStorage.getItem('themColor')));
+
   return (
-    <ThemeContext.Provider value={themColor}>
+    <ThemeContext.Provider value={themProvider}>
       <Toolbar/>
     </ThemeContext.Provider>
   );

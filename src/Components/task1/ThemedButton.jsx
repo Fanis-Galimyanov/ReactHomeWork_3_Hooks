@@ -1,15 +1,15 @@
 import { useContext, useEffect  } from "react";
-import { changeTheme, ThemeContext } from "./Task1Main";
+import { ThemeContext } from "./Task1Main";
 
 export default function ThemedButton(){
-    const themes = useContext(ThemeContext);
+    const themProvider = useContext(ThemeContext);
     useEffect(() => {
-            document.body.style.backgroundColor = themes.background;
-            document.getElementById('knopochka').style.backgroundColor = themes.background;
-            document.getElementById('knopochka').style.color = themes.foreground;
-        }, [themes]);
+            document.body.style.backgroundColor = themProvider.collorThem.background;
+            document.getElementById('knopochka').style.backgroundColor = themProvider.collorThem.background;
+            document.getElementById('knopochka').style.color = themProvider.collorThem.foreground;
+        }, [themProvider.collorThem]);
     return(
-        <button id ="knopochka" onClick={changeTheme}>
+        <button id ="knopochka" onClick={themProvider.changeColor}>
             <h1>Поменять цвет фона</h1>
         </button>
 
