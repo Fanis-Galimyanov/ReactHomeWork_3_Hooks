@@ -1,5 +1,5 @@
 
-import {createContext, useState} from 'react'
+import {createContext, useEffect, useState} from 'react'
 import Toolbar from './Toolbar';
 
 
@@ -21,7 +21,7 @@ let setThemeColor;
 const themProvider = {  
   collorThem : null,
   changeColor : function(){
-                            if(themProvider.collorThem === themes.light){
+                            if(themProvider.collorThem.background === "#eeeeee"){
                                   setThemeColor(themes.dark);
                                   localStorage.setItem('themColor',JSON.stringify(themes.dark));
                             }
