@@ -3,22 +3,32 @@ import { useReducer} from "react";
 const initialState = [];
 
 const TODOS_ACTIONS = {
-    ADD_TASK: 'add_task',
-    DELETE_TASK: 'delete_task',
-    RESET_TODOS: 'reset_todos'
+    ADD_TODO: 'add_task',
+    TOGGLE_TODO: 'toggle_todo',
+    DELETE_TODO: 'delete_task',
+    RESET_TODOS: 'reset_todos',
+    
 }
 
 function reducer(state, action){
     switch(action.type){
-        case  TODOS_ACTIONS.ADD_TASK : return [
+        case  TODOS_ACTIONS.ADD_TODO : return [
              ...state,
             {
-                id: state.length + 1,
-                name: action.payload
+                id: Date.now(),
+                name: action.payload,
+                complete: false
             }
         ];
 
-         case TODOS_ACTIONS.DELETE_TASK : return(
+        case TODOS_ACTIONS.TOGGLE_TODO: return ( state.map(task => {  
+                                                    if(task.id === action.payload){
+                                                            return {...task, complete: !task.complete}
+                                                            }
+                                                    return task;
+                                                }));
+
+         case TODOS_ACTIONS.DELETE_TODO : return(
                     state.filter(d => d.id !== action.payload));
 
          case TODOS_ACTIONS.RESET_TODOS: return init(action.payload)
@@ -39,15 +49,19 @@ export default function Task5Main(){
 
     return(
         <>
-            <h4> Todo List {todos.length} </h4>
+            <h4> Todo List длина: {todos.length} </h4>
 
-            Add New Task:
-            <input id="for_add_task" type="text" 
-                onBlur = {(event) => 
-                                dispatch({type: TODOS_ACTIONS.ADD_TASK, 
-                                            payload: event.target.value}) 
-                        }
-            />
+            <span>Новая задача:</span>
+            <input id="for_add_task" type="text" />
+
+            <button onClick={() => 
+                                dispatch({type: TODOS_ACTIONS.ADD_TODO, 
+                                            payload: document.getElementById('for_add_task').value}) 
+                        }>
+                    Добавить задачу
+            </button>
+
+            <hr/>
 
             <button onClick={() => dispatch({
                 type: TODOS_ACTIONS.RESET_TODOS, 
@@ -59,17 +73,25 @@ export default function Task5Main(){
 
             {todos.map(todo => 
                         <li key = {todo.id}>
-                            {todo.name}
+                           <span> {todo.name} </span>
                                 <span>
                                     <button onClick={() => dispatch(
-                                            {type: TODOS_ACTIONS.DELETE_TASK, payload:todo.id}
+                                            {type: TODOS_ACTIONS.TOGGLE_TODO, payload:todo.id}
                                         )}>
-                                        Delete
+                                       {todo.complete?'Восстановить':'Завершённая'}
+                                    </button>
+                                </span>
+
+                                <span> 
+                                    <button onClick={() => dispatch(
+                                            {type: TODOS_ACTIONS.DELETE_TODO, payload:todo.id}
+                                        )}>
+                                        Уадлить
                                     </button>
                                 </span>
                         </li>
-                        )
+                    )
             }
         </>
     );
-}
+} 
