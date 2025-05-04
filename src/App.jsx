@@ -6,10 +6,10 @@ import Task5Main from './Components/task5/Task5Main';
 function App() { 
   return (
     //  <Task1Main/>
-    // <Task2Main/>
+     <Task2Main/>
     // <Task3Main/>
     // <Task4Main/>
-    <Task5Main/>
+   // <Task5Main/>
   );
 }
 
