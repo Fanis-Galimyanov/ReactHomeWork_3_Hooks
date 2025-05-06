@@ -1,17 +1,14 @@
-export default function ChildOne({ items, addItem }){
+import { memo } from 'react';
 
-    const result = items.map((item, index) => {
-		return <p key={index}>{item}</p>;
-	});
+export default memo(function ChildOne({ hellofuncMemo, messageMemo }){
+
 
     console.log('ChildOne Rendered');
 
     return(
         <>
-            <h1>ChildOne</h1>
-            <h3>Our items</h3>
-			{result}
-			<button onClick={addItem}>add item</button>
+            <button onClick={hellofuncMemo}>useCallback</button>
+            <h1>{messageMemo}</h1> 
         </>
     );
-}
+})
