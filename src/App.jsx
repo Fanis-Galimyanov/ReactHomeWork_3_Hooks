@@ -9,12 +9,17 @@ import Task6Main from './Components/task6/Task6Main';
 function App() { 
   return (
     <>
-         {/* <Task1Main/> */}
-         {/* <Task2Main/> */}
-         {/* <Task3Main/> */}
+         <Task1Main/>
+         <hr />
+         <Task2Main/>
+         <hr />
+         <Task3Main/>
+         <hr />
          <Task4Main/>
-         {/* <Task5Main/> */}
-         {/* <Task6Main/>  */}
+         <hr />
+         <Task5Main/>
+         <hr />
+         <Task6Main/> 
    </>
   );
 }

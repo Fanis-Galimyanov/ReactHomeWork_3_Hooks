@@ -49,6 +49,7 @@ export default function Task5Main(){
 
     return(
         <>
+            <h1>Задача 5</h1>
             <h4> Todo List длина: {todos.length} </h4>
 
             <span>Новая задача:</span>

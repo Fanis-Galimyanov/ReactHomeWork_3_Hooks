@@ -20,6 +20,7 @@ export default function Task6Main(){
 
     return (
         <>
+            <h1>Задача 6</h1>
             <p><button onClick={() => setNum(num + 1)}> Рендерим Home </button></p>
             <p>Клики: {num}</p>
 

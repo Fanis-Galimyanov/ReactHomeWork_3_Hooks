@@ -37,8 +37,11 @@ export default function Task1Main(){
     [themProvider.collorThem, setThemeColor] = useState(JSON.parse(localStorage.getItem('themColor')));
 
   return (
-    <ThemeContext.Provider value={themProvider}>
-      <Toolbar/>
-    </ThemeContext.Provider>
+    <>
+        <h1>Задача 1</h1>
+        <ThemeContext.Provider value={themProvider}>
+            <Toolbar/>
+        </ThemeContext.Provider>
+    </>
   );
 }

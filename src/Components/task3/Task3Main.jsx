@@ -27,6 +27,7 @@ export default function Task3Main(){
 
     return(
         <>
+            <h1>Задача 3</h1>
             <p><button onClick={() => setArray(randArrGen)}> Сгенегрировать </button></p>
 
             <p><span>Случайные числа: </span>{array.map(function(elem, index){

@@ -36,7 +36,7 @@ const hellofuncMemo = useCallback(() => {
 
 return(
     <>
-        <h2>Задача 2</h2>
+        <h1>Задача 2</h1>
 
         <p>Count: {state.count}</p>
         <p><button onClick = {() => dispatch({type: 'decrement'})}>-</button></p>
