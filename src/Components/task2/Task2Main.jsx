@@ -1,30 +1,24 @@
 import React, { useState, useCallback } from "react";
-import Child from "./Child";
+
+import ChildOne from "./ChildOne";
+import ChildTwo from "./ChildTwo";
 
 export default function Task2Main() {
-  const [counter, setCounter] = useState(0);
-  const [counterTwo, setCounterTwo] = useState(0);
 
-  const updateOne = () => {
-    console.log(
-      "Я не мемоизирован"
-    );
-  };
+  const [num, setNum] = useState(0);
+  const [items, setItems] = useState([]);
 
-  const updateTwo = useCallback(() => {
-    console.log(
-      "Я мемоизирован!"
-   );
-  }, [counterTwo]);
+  function addItem() {
+    setItems([...items, 'new item']);
+  }
 
-  return (
-    <>
-      <button onClick={() => setCounter(counter + 1)}>One</button>
-      <br />
-        <button onClick={() => setCounterTwo(counterTwo + 1)}>
-        Two
-      </button>
-      <Child updateOne ={updateOne} updateTwo ={updateTwo} />
-    </>
-  );
+  console.log('Home Rendered');
+	
+	return <div>
+		<button onClick={() => setNum(num + 1)}>click</button>
+		<p>clicks: {num}</p>
+
+    <ChildOne items={items} addItem={addItem} />
+    <ChildTwo />
+	</div>;
 }

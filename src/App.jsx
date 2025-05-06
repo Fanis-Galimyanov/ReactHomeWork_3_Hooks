@@ -8,12 +8,12 @@ import Task6Main from './Components/task6/Task6Main';
 function App() { 
   return (
     <>
-         {/* {/* <Task1Main/>
-         <Task2Main/> */}
-         <Task3Main/>
+         {/* <Task1Main/> */}
+         {/* <Task2Main/> */}
+         {/* <Task3Main/> */}
          {/* <Task4Main/>
          <Task5Main/> */}
-         {/* <Task6Main/>  */}
+         <Task6Main/> 
    </>
   );
 }

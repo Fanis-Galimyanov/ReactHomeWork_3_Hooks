@@ -1,16 +1,30 @@
-import React, {useMemo, useCallback, useState} from "react";
+import React, {useCallback, useState} from "react";
+import MemoChild from "./MemoChild";
+import OrdinaryChild from "./OrdinaryChild";
 
 export default function Task6Main(){
-    const [myCurrentState, setMyCurrentState] = useState(' ');
+    const [num, setNum] = useState(0);
+    const [itemsMemo, setItemsMemo] = useState([]);
+    const [itemsOrdinary, setItemsOrdinary] = useState([]);
 
-    const myCalculation = useMemo(() => {
-        return myCurrentState + 'test'
-    }, [myCurrentState])
+    const addItemMemo = useCallback(() => {
+        setItemsMemo([...itemsMemo, 'Элемент мемоизированного компонента']);
+    }, [itemsMemo]);
 
-    console.log('render Home', myCalculation);
-    return(
+    function addItemOrdinary() {
+        setItemsOrdinary([...itemsOrdinary, 'Элемент обычный компонента']);
+    }
+
+
+    console.log('render Home');
+
+    return (
         <>
-            My component
+            <p><button onClick={() => setNum(num + 1)}> Рендерим Home </button></p>
+            <p>Клики: {num}</p>
+
+            <MemoChild items={itemsMemo} addItem={addItemMemo}/>
+            <OrdinaryChild items={itemsOrdinary} addItem={addItemOrdinary}/>
         </>
     );
 }

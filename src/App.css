@@ -45,3 +45,10 @@
     color: #888;
   }
   
+#MemoChild{
+  border: solid blue;
+}
+
+#OrdinaryChild {
+  border: solid red;
+}
